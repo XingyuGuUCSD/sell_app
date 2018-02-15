@@ -40,6 +40,14 @@
 
 		<!-- 公告内容 -->
 		<div class="bulletin-wrapper">
+			<img class="icon" v-if="poiInfo.discounts2" :src="poiInfo.discounts2[0].icon_url">
+			
+			<!-- v-if用于判断是否有数据 -->
+			<span class="text" v-if="poiInfo.discounts2">{{poiInfo.discounts2[0].info}}</span>
+
+			<div class="detail" v-if="poiInfo.discounts2">
+				{{poiInfo.discounts2.length}}个活动
+			</div>
 		</div>
 
 		<!-- 背景 -->

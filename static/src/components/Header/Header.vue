@@ -40,11 +40,51 @@
 
 		<!-- 公告内容 -->
 		<div class="bulletin-wrapper">
+			<img class="icon" v-if="poiInfo.discounts2" :src="poiInfo.discounts2[0].icon_url">
+			
+			<!-- v-if用于判断是否有数据 -->
+			<span class="text" v-if="poiInfo.discounts2">{{poiInfo.discounts2[0].info}}</span>
+
+			<div class="detail" v-if="poiInfo.discounts2">
+				{{poiInfo.discounts2.length}}个活动
+				<span class="icon-keyboard_arrow_right"></span>
+			</div>
 		</div>
 
 		<!-- 背景 -->
 		<div class="bg-wrapper" :style="content_bg">
 			<!-- <img :src="poiInfo.head_pic_url"/> -->
+		</div>
+
+		<!-- 公告详情 -->
+		<div class="bulletin-detail">
+			<div class="detial-wrapper">
+				<div class="main-wrapper">
+					<div class="icon" :style="head_bg">
+						<h3>{{poiInfo.name}}</h3>
+						<p class="tip">
+							{{poiInfo.min_price_tip}}<i></i>
+							{{poiInfo.shipping_fee_tip}}<i></i>
+							{{poiInfo.delivery_time_tip}}
+						</p>
+						<p class="time">
+							配送时间
+							{{poiInfo.shipping_time}}
+						</p>
+						<div class="discounts" v-if="poiInfo.discounts2">
+							<p>
+								<img :src="poiInfo.discounts2[0].icon_url"/>
+								<span>{{poiInfo.discounts2[0].info}}</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="detail-wrapper"></div>
+			</div>
+		</div>
+
+		<div class="close-wrapper">
+			<span class="icon-close"></span>
 		</div>
 
 

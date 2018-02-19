@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="collect">
-				<img src="../../../resource/img/star.png"/>
+				<img src="./star.png"/>
 				<span>收藏</span>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 			<!-- v-if用于判断是否有数据 -->
 			<span class="text" v-if="poiInfo.discounts2">{{poiInfo.discounts2[0].info}}</span>
 
-			<div class="detail" v-if="poiInfo.discounts2">
+			<div class="detail" v-if="poiInfo.discounts2" @click="showBulletin">
 				{{poiInfo.discounts2.length}}个活动
 				<span class="icon-keyboard_arrow_right"></span>
 			</div>
@@ -57,20 +57,31 @@
 		</div>
 
 		<!-- 公告详情 -->
-		<div class="bulletin-detail">
-			<div class="detial-wrapper">
-				<div class="main-wrapper">
-					<div class="icon" :style="head_bg">
-						<h3>{{poiInfo.name}}</h3>
+		<!-- v-show是状态变量 -->
+		<transition name="detail">
+			<div class="bulletin-detail" v-show="isShow">
+				<div class="detail-wrapper">
+					<div class="main-wrapper" :style="detail_bg">
+						<div class="icon" :style="head_bg"></div>
+						<h3 class="name">{{poiInfo.name}}</h3>
+
+						<!-- 评价稍后 -->
+						<div class="score">
+							<Star :score='poiInfo.wm_poi_score'></Star>
+							<span>{{poiInfo.wm_poi_score}}</span>
+						</div>
+
 						<p class="tip">
-							{{poiInfo.min_price_tip}}<i></i>
-							{{poiInfo.shipping_fee_tip}}<i></i>
+							{{poiInfo.min_price_tip}}<i>|</i>
+							{{poiInfo.shipping_fee_tip}}<i>|</i>
 							{{poiInfo.delivery_time_tip}}
 						</p>
+
 						<p class="time">
-							配送时间
+							配送时间:
 							{{poiInfo.shipping_time}}
 						</p>
+
 						<div class="discounts" v-if="poiInfo.discounts2">
 							<p>
 								<img :src="poiInfo.discounts2[0].icon_url"/>
@@ -78,14 +89,16 @@
 							</p>
 						</div>
 					</div>
+						
+					<div class="close-wrapper" @click="closeBulletin">
+						<span class="icon-close"></span>
+					</div>
+			
 				</div>
-				<div class="detail-wrapper"></div>
 			</div>
-		</div>
+		</transition>
 
-		<div class="close-wrapper">
-			<span class="icon-close"></span>
-		</div>
+		
 
 
 
@@ -94,7 +107,18 @@
 </template>
 
 <script>
+	import Star from "components/Star/Star"
+
 	export default{
+		data(){
+			return{
+				isShow: false//公告详情显示
+			}
+		},
+		//注册
+		components:{
+			Star
+		},
 		//从APP.VUE传递过来poiInfo
 		props:{//组件传值
 			poiInfo:{
@@ -109,6 +133,18 @@
 			},
 			head_bg(){
 				return "background-image: url(" + this.poiInfo.pic_url + ");";
+			},
+			detail_bg(){
+				return "background-image: url(" + this.poiInfo.poi_back_pic_url + ");"; 
+			}
+
+		},
+		methods:{
+			showBulletin(){
+				this.isShow = true;
+			},
+			closeBulletin(){
+				this.isShow = false;
 			}
 		}
 	}

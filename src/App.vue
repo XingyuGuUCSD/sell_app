@@ -24,8 +24,8 @@
 //导入组件
 // import HelloWorld from './components/HelloWorld'
 // import Test from './components/Test'
-import Myheader from './components/Header/Header'
-import Mynav from './components/Nav/Nav'
+import Myheader from 'components/Header/Header'
+import Mynav from 'components/Nav/Nav'
 
 export default {
   name: 'App',

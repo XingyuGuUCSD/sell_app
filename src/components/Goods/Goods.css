@@ -1,0 +1,63 @@
+.goods{
+	display: flex;
+
+	/*通过该方式确认高度*/
+	position: absolute;
+	top: 190px;
+	bottom: 51px;
+
+	overflow: hidden;
+	width: 100%;
+}
+
+/*
+flex: flex-grow | flex-shrink | flex-basis;
+//flex-grow必选，其余可选
+默认： flex: 0 1 auto;
+flex-grow: 定义放大比例，默认是0，如果存在剩余空间，也不放大;
+flex-shrink: 定义缩小比例，默认1， 如果空间不足，该项目会被缩小， flex-shrink属性为0时，其余项目为1，则空间不足时，前者不缩小;
+flex-basis: 定义了在分配多空间之前，项目占据主轴空间，浏览器根据这个属性，计算占据是否有多余空间。
+			默认值是auto，即项目的本来大小，设为跟widh或height属性值一样，则项目占据固定空间;
+*/
+
+.goods .menu-wrapper{
+	flex: 0 0 85px;
+	background: #f4f4f4;
+}
+
+.goods .menu-wrapper .menu-item{
+	padding: 16px 23px 15px 10px;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.goods .menu-wrapper .menu-item .text{
+	font-size: 13px;
+	color: #333333;
+	line-height: 17px;
+	vertical-align: middle;
+
+	/*多行显示省略号，使用webkit的css扩展控制，使用范围webkit浏览器和移动端*/
+
+	/*用来显示一个块元素显示的文本行数*/
+	-webkit-line-clamp: 2;
+
+	/*必须，必须将对象作为弹性伸缩盒子模型显示*/
+	display: -webkit-box;
+
+	/*必须，设置或检索伸缩盒子的子元素排列方式*/
+	-webkit-box-orient: vertical;
+
+	overflow: hidden;
+
+}
+
+.goods .menu-wrapper .menu-item .icon{
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+
+.goods .foods-wrapper{
+	flex: 1;
+	background: blue;
+}

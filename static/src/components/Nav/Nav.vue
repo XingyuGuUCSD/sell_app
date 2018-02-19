@@ -62,7 +62,7 @@
 	}
 
 	.nav .active .line{
-		width: 20px;
+		width: 21px;
 		height: 2px;
 		display: inline-block;
 		background-color: #FFBB22;

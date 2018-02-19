@@ -47,7 +47,7 @@ const routes=[
 //3.创建路由实例
 const router = new VueRouter({
 	routes,
-	// 选中后的类名
+	// 选中后的类名,默认值是router-link-active
 	linkActiveClass: 'active'
 });
 
